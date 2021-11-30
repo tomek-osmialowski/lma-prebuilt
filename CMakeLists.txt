@@ -2,14 +2,14 @@ cmake_minimum_required(VERSION 3.16)
 
 project(lma-prebuilt VERSION 1.0.4)
 
-add_library(lma-prebuilt SHARED)
+add_library(lma-prebuilt INTERFACE)
 
 message(STATUS "*** LMA-PREBUILT ***")
-message(STATUS "*** _WEBOS_VERSION_ = ${_WEBOS_VERSION}")
+message(STATUS "*** _WEBOS_VERSION = ${_WEBOS_VERSION}")
 message(STATUS "*** WEBOS_PACKAGE_VERSION_LIST = ${WEBOS_PACKAGE_VERSION_LIST}")
 
-set(LMA_PREBUILT_HEADERS webos50/include/)
-set(LMA_PREBUILT_LIBRARY_PATH webos50/lib)
+set(LMA_PREBUILT_HEADERS ${_WEBOS_VERSION}/include/)
+set(LMA_PREBUILT_LIBRARY_PATH ${_WEBOS_VERSION}/lib)
 set(LMA_PREBUILT_LIBRARY_NAME liblma.so)
 set(LMA_PREBUILT_DEPENDENT_LIBRARIES) #libplayready in the future
 
