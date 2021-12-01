@@ -58,7 +58,7 @@ enum LG_ENCRYPTION_MODE {
 	// <NOTE> Not supported in PlayReady 3.0 or lower.
 	// ENCRYPTION_MODE_AESCTR_CENS,  ///< AESCTR mode's cens : Not supported PlayReady
     // ENCRYPTION_MODE_AESCBC_CBC1,  ///< AESCBC mode's cbc1 : Not supported PlayReady
-    ENCRYPTION_MODE_AESCBC_CBCS = 4  ///< AESCBC mode's cbcs : Supported from PlayReady 4.0
+    // ENCRYPTION_MODE_AESCBC_CBCS,  ///< AESCBC mode's cbcs : Supported from PlayReady 4.0
 };
 typedef LG_ENCRYPTION_MODE encryption_t;
 

@@ -22,6 +22,7 @@
 #include <memory>
 
 #include "LG_Type.h"
+#include "LG_Drm.h"
 
 
 /**
@@ -172,6 +173,13 @@ public:
 	virtual ~LG_EsPlayer() {}
 
 	/**
+	 *@brief		Use this function to set the decrypt context object.
+	 *@details		If DRM is used, it should be called before the first Feed () call.
+	 *@return		returns LG_SUCCESS on success or LG_ERROR on failure
+	 */
+	virtual int SetDrm (const LG_Drm* drm) = 0;
+
+	/**
 	 *@brief		Use this function to set the Media information.
 	 *@details		The same function can be performed in Load(const LG_MediaInfo& mediaInfo).
 	 *@return		returns LG_SUCCESS on success or LG_ERROR on failure
@@ -206,7 +214,12 @@ public:
 	 *@return		returns LG_SUCCESS on success, LG_ERROR on failure
 	 */
 	virtual int Feed (const uint8_t *data, uint32_t size, int64_t pts, estream_t type) const = 0;
-	virtual int Feed (const uint8_t *data, uint32_t size, int64_t pts, estream_t type, encryption_t mode) const = 0;
+	virtual int Feed (const uint8_t *data, uint32_t size, int64_t pts, estream_t type,
+                      encryption_t mode,
+                      const uint8_t *kid, uint32_t kidSize,
+                      const uint8_t *iv, uint32_t ivSize,
+                      const subsample_t *subsample, uint32_t subsampleSize) const = 0;
+
 
 	/**
 	 *@brief		Use this function to play media.
