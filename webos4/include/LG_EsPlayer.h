@@ -22,7 +22,6 @@
 #include <memory>
 
 #include "LG_Type.h"
-#include "LG_Drm.h"
 
 
 /**
@@ -177,7 +176,7 @@ public:
 	 *@details		If DRM is used, it should be called before the first Feed () call.
 	 *@return		returns LG_SUCCESS on success or LG_ERROR on failure
 	 */
-	virtual int SetDrm (const LG_Drm* drm) = 0;
+	virtual int SetDrm (const void* drm) = 0;
 
 	/**
 	 *@brief		Use this function to set the Media information.
