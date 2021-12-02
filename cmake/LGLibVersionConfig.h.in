@@ -1,0 +1,13 @@
+#ifndef LGLIBVERSION_H
+#define LGLIBVERSION_H
+
+#include <string>
+
+#define VERSION_LIBINTERFACE @LIBINTERFACE_VERSION@
+
+std::string getLGLibVersion()
+{
+    return @LIBINTERFACE_VERSION@;
+}
+
+#endif // LGLIBVERSION_H

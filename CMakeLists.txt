@@ -19,8 +19,12 @@ set(GENERATED_DIR "${CMAKE_CURRENT_BINARY_DIR}/generated")
 set(INSTALL_CONFIGDIR "${CMAKE_INSTALL_LIBDIR}/cmake/${PROJECT_NAME}")
 set(VERSION_CONFIG "${GENERATED_DIR}/${PROJECT_NAME}ConfigVersion.cmake")
 set(PROJECT_CONFIG "${GENERATED_DIR}/${PROJECT_NAME}Config.cmake")
+set(VERSION_HEADER "${GENERATED_DIR}/LGLibVersion.h")
 set(TARGETS_EXPORT_NAME "${PROJECT_NAME}Targets")
 set(NAMESPACE "${PROJECT_NAME}::")
+
+set(LIBINTERFACE_VERSION "\"1.0.4c\"")
+configure_file(cmake/LGLibVersionConfig.h.in ${CMAKE_CURRENT_SOURCE_DIR}/${LMA_PREBUILT_HEADERS}/LGLibVersion.h)
 
 target_include_directories(lma-prebuilt
     INTERFACE

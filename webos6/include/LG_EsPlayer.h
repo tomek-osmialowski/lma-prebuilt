@@ -206,9 +206,7 @@ public:
 	 *@return		returns LG_SUCCESS on success, LG_ERROR on failure
 	 */
 	virtual int Feed (const uint8_t *data, uint32_t size, int64_t pts, estream_t type) const = 0;
-	virtual int Feed (const uint8_t *data, uint32_t size, int64_t pts, estream_t type,
-                      encryption_t mode) const = 0;
-
+	virtual int Feed (const uint8_t *data, uint32_t size, int64_t pts, estream_t type, encryption_t mode) const = 0;
 
 	/**
 	 *@brief		Use this function to play media.
