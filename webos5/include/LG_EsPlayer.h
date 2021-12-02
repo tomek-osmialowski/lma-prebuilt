@@ -171,12 +171,44 @@ class LG_EsPlayer
 public:
 	virtual ~LG_EsPlayer() {}
 
+#if defined(__WEBOS_SVP__)
 	/**
-	 *@brief		Use this function to set the decrypt context object.
-	 *@details		If DRM is used, it should be called before the first Feed () call.
-	 *@return		returns LG_SUCCESS on success or LG_ERROR on failure
+	 * @brief        Use this function to decrypt PlayReady DRM contents in TEE
+	 * @details      call sequence       Decrypt() -> Feed()
+	 * @param        mode                [in] Encryption schemes
+	 * @param        appContext          [in] DRM_APP_CONTEXT
+	 * @param        kidSize             [in] kid size
+	 * @param        kid                 [in] the identifier of the desired key. 16 bytes array
+	 * @param        subSampleMapSize    [in] subSampleMap count
+	 * @param        subSampleMap        [in] the map of clear and protected ranges of the sample
+	 * @param        ivSize              [in] IV size
+	 * @param        iv                  [in] IV value
+	 * @param        dataSize            [in] sample size
+	 * @param        data                [in] sample
+	 * @param        outClearSize        [out] out size. this becomes an argument to Feed()
+	 * @param        outClearData        [out] out data of addr. this becomes an argument to Feed()
+	 * @return       returns DRM_RESULT
 	 */
-	virtual int SetDrm (const void* drm) = 0;
+	virtual int32_t Decrypt (
+	    encryption_t        mode,
+	    void               *appContext,
+	    uint32_t            kidSize,
+	    uint8_t            *kid,
+	    uint32_t            subSampleMapSize,
+	    uint32_t           *subSampleMap,
+	    uint32_t            ivSize,
+	    uint8_t            *iv,
+	    uint32_t            dataSize,
+	    uint8_t            *data,
+	    uint32_t           *outClearSize,
+	    uint8_t           **outClearData) = 0;
+
+    /**
+	 * @brief        Use this function to release SVP decrypt context before Drm_Uninitialize(DRM_APP_CONTEXT*)
+	 * @note         This API should be called before releasing media pipeline
+	 */
+    virtual void ReleaseDecryptContext() = 0;
+#endif
 
 	/**
 	 *@brief		Use this function to set the Media information.
